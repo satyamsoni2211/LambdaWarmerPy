@@ -12,6 +12,7 @@ jobs:
         with:
           python-version: 3.8
       - run: python setup.py sdist
+      - run: pip install twine
       - name: build terraform zip file
         run: |
           zip -r --junk-paths terraform_code.zip terraform_resources/*
@@ -46,3 +47,6 @@ jobs:
           asset_path: ./terraform_code.zip
           asset_name: terraform_code.zip
           asset_content_type: application/zip
+      - name: Release to PYPI
+        environment: production
+        run: twine upload -u $TWINE_USERNAME -P TWINE_PASSWORD dist/*
