@@ -37,7 +37,7 @@ jobs:
           asset_name: py_lambda_warmer-${RELEASE}.tar.gz
           asset_content_type: application/zip
       - name: Upload Release Asset Source Code
-        id: upload-release-asset
+        id: upload-release-terraform-code
         uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
