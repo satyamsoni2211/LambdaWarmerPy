@@ -49,4 +49,7 @@ jobs:
           asset_name: terraform_code.zip
           asset_content_type: application/zip
       - name: Release to PYPI
-        run: twine upload -u $TWINE_USERNAME -P TWINE_PASSWORD dist/*
+        env:
+          username: ${{secrets.TWINE_USERNAME}}
+          password: ${{secrets.TWINE_PASSWORD}}
+        run: twine upload -u $username -P $password  dist/*
