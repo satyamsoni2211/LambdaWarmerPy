@@ -1,7 +1,7 @@
 from distutils.core import setup
 
 setup(
-    name="lambda_warmer",
+    name="py_lambda_warmer",
     version="0.0.1",
     description="Warmer Utility for Lambda Function",
     author="satyam soni",
