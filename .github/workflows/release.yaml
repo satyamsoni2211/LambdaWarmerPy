@@ -1,5 +1,8 @@
 name: upload-artifacts-and-release
-on: [push]
+on:
+  push:
+    branches:
+      - "master"
 jobs:
   checkout-latest-version:
     runs-on: ubuntu-latest
