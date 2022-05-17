@@ -12,5 +12,5 @@ jobs:
         with:
           python-version: 3.8
       - run: python setup.py sdist
-      - run: echo "RELEASE=$(cat release)"
+      - run: echo "RELEASE=$(cat release)" >> $GITHUB_ENV
       - run: echo $RELEASE
