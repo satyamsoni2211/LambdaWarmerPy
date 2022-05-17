@@ -22,8 +22,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: ${{ RELEASE }}
-          release_name: Release V.${{ RELEASE }}
+          tag_name: ${RELEASE}
+          release_name: Release V.${RELEASE }
           draft: false
           prerelease: false
       - name: Upload Release Asset Source Code
@@ -33,8 +33,8 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps
-          asset_path: ./dist/py_lambda_warmer-${{ RELEASE }}.tar.gz
-          asset_name: py_lambda_warmer-${{ RELEASE }}.tar.gz
+          asset_path: ./dist/py_lambda_warmer-${RELEASE}.tar.gz
+          asset_name: py_lambda_warmer-${RELEASE}.tar.gz
           asset_content_type: application/zip
       - name: Upload Release Asset Source Code
         id: upload-release-asset
