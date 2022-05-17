@@ -14,4 +14,4 @@ jobs:
       - run: python setup.py sdist
       - env:
           RELEASE: $(cat release)
-      - run: echo $RELEASE
+        run: echo $RELEASE
