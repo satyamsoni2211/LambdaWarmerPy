@@ -7,7 +7,7 @@ setup(
     author="satyam soni",
     author_email="satyamsoni@hotmail.co.uk",
     py_modules=["warmer", ],
-    url="https://github.com/satyamsoni2211/LambdaWarmer.git",
+    url="https://github.com/satyamsoni2211/LambdaWarmerPy.git",
     keywords="lambda cold start warming performance",
     license="mit",
     classifiers=[
