@@ -12,6 +12,5 @@ jobs:
         with:
           python-version: 3.8
       - run: python setup.py sdist
-      - env:
-          RELEASE: $(cat release)
-        run: echo $RELEASE
+      - run: echo "RELEASE=$(cat release)"
+      - run: echo $RELEASE
