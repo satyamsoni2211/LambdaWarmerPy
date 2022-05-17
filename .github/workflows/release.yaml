@@ -12,5 +12,37 @@ jobs:
         with:
           python-version: 3.8
       - run: python setup.py sdist
+      - name: build terraform zip file
+        run: |
+          zip -r --junk-paths terraform_code.zip terraform_resources/*
       - run: echo "RELEASE=$(cat release)" >> $GITHUB_ENV
-      - run: echo $RELEASE
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ RELEASE }}
+          release_name: Release V.${{ RELEASE }}
+          draft: false
+          prerelease: false
+      - name: Upload Release Asset Source Code
+        id: upload-release-asset
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps
+          asset_path: ./dist/py_lambda_warmer-${{ RELEASE }}.tar.gz
+          asset_name: py_lambda_warmer-${{ RELEASE }}.tar.gz
+          asset_content_type: application/zip
+      - name: Upload Release Asset Source Code
+        id: upload-release-asset
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps
+          asset_path: ./terraform_code.zip
+          asset_name: terraform_code.zip
+          asset_content_type: application/zip
