@@ -12,11 +12,6 @@ jobs:
         with:
           python-version: 3.8
       - run: python setup.py sdist
-      - uses: actions/upload-artifact@v3
-        with:
-          name: terraform_source_code
-          path: terraform_resources/
-      - uses: actions/upload-artifact@v3
-        with:
-          name: py_lambda_warmer.zip
-          path: dist/py_lambda_warmer*.gz
+      - env:
+          RELEASE: $(cat release)
+      - run: echo $RELEASE
