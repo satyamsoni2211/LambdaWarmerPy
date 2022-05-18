@@ -1,12 +1,13 @@
-from distutils.core import setup
+from setuptools import setup
 
 with open("README.md") as fr:
     long_description = fr.read()
 setup(
     name="py_lambda_warmer",
-    version="0.1.2",
+    version="0.1.3",
     description="Warmer Utility for Lambda Function",
     long_description=long_description,
+    long_description_content_type='text/markdown',
     author="satyam soni",
     author_email="satyamsoni@hotmail.co.uk",
     py_modules=["warmer", ],
