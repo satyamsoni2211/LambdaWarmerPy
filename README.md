@@ -84,4 +84,22 @@ terraform apply tfplan
 
 You may also modify resource names as per your requirements in the code.
 
+You may also use `AWS SAM` template to create `Event Bridge Notifications` to warm up `Lambda` function.
+
+```yaml
+TransactionCompsAPI:
+  Type: "AWS::Serverless::Function"
+  Properties:
+    FunctionName: fake-function
+    Events:
+      WarmerSchedule: # add this event to the same template
+        Type: Schedule
+        Properties:
+          Schedule: cron(*/5 * ? * 2-6 *)
+          Name: fake-function-warmer-event
+          Description: Warmer Event for Lambda Function
+          Enabled: true
+          Input: '{"warmer": true}' # this refers to the warmer flag
+```
+
 Happy Warming.
