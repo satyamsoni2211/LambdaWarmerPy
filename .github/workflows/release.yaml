@@ -28,6 +28,7 @@ jobs:
           release_name: Release V.${{env.RELEASE}}
           draft: false
           prerelease: false
+          body_path: ./CHANGELOG.md
       - name: Upload Release Asset Source Code
         id: upload-release-asset
         uses: actions/upload-release-asset@v1
