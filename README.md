@@ -9,6 +9,8 @@ This is a utility project designed to cater neccessities for warming up `Lambda`
 
 #
 
+[![upload-artifacts-and-release-new-version](https://github.com/satyamsoni2211/LambdaWarmerPy/actions/workflows/release.yaml/badge.svg)](https://github.com/satyamsoni2211/LambdaWarmerPy/actions/workflows/release.yaml) [![PyPI version](https://badge.fury.io/py/py-lambda-warmer.svg)](https://badge.fury.io/py/py-lambda-warmer)
+
 <a name="installing-warmer"></a>
 
 ## Installing Warmer
