@@ -56,3 +56,5 @@ Thumbs.db
 venv
 *egg*
 tfplan.json
+build/
+dist/

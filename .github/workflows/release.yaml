@@ -12,8 +12,8 @@ jobs:
       - uses: actions/setup-python@v3
         with:
           python-version: 3.9
-      - run: python setup.py sdist bdist bdist_wheel
-      - run: pip install twine
+      - run: pip install twine wheel
+      - run: python setup.py sdist bdist_wheel
       - name: build terraform zip file
         run: |
           zip -r --junk-paths terraform_code.zip terraform_resources/*

@@ -46,7 +46,7 @@ from flask import Flask
 app = Flask()
 @warmer(flag="custom_event_key")
 def application(event, context):
-    app(event, context)
+    return app(event, context)
 
 # or
 
