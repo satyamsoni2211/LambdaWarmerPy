@@ -1,4 +1,31 @@
-This project is a utility project designed to cater necesities for warming up `Lambda` functions to prevent cold starts.
+This is a utility project designed to cater neccessities for warming up `Lambda` functions to prevent cold starts.
+
+## Table Of Contents
+
+- [Table Of Contents](#table-of-contents)
+- [Installing Warmer](#installing-warmer)
+- [Using Warmer](#using-warmer)
+- [Setting up Event Bridge Notifications](#setting-up-event-bridge-notifications)
+
+#
+
+<a name="installing-warmer"></a>
+
+## Installing Warmer
+
+To install module, run the below command:
+
+```bash
+python3 -m pip install py_lambda_warmer
+
+# or
+
+python3 -m pip install py_lambda_warmer==<release-version>
+```
+
+<a name="using-warmer"></a>
+
+## Using Warmer
 
 This is very easy to incorporate in your existing Python Lambda Handlers. Follow the below code.
 
@@ -27,6 +54,10 @@ application = warmer(flag="custom_event_key")(app)
 ```
 
 > `warmer` will help you cater the custom events that are coming for warming _Lambda_ function.
+
+<a name="setting-up-event-bridge-notifications"></a>
+
+## Setting up Event Bridge Notifications
 
 You can also setup you custom event bridge schedule for Lambda function using the `Terraform Resource` code mentioned in
 the repository.
