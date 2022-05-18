@@ -13,7 +13,7 @@ jobs:
         with:
           python-version: 3.9
       - run: pip install twine wheel
-      - run: python setup.py sdist bdist bdist_wheel
+      - run: python setup.py sdist bdist_wheel
       - name: build terraform zip file
         run: |
           zip -r --junk-paths terraform_code.zip terraform_resources/*
