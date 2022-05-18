@@ -2,7 +2,7 @@ name: upload-artifacts-and-release-new-version
 on:
   push:
     branches:
-      - "master"
+      - "release/**"
 jobs:
   release-new-version:
     runs-on: ubuntu-latest
@@ -11,7 +11,7 @@ jobs:
       - uses: actions/checkout@v2
       - uses: actions/setup-python@v3
         with:
-          python-version: 3.8
+          python-version: 3.9
       - run: python setup.py sdist
       - run: pip install twine
       - name: build terraform zip file
