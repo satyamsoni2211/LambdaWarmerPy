@@ -19,6 +19,10 @@ app = Flask()
 def application(event, context):
     app(event, context)
 
+# or
+
+application = warmer(flag="custom_event_key")(app)
+
 # you may now use application as your handler
 ```
 
