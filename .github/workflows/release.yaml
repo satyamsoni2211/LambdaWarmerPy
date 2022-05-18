@@ -12,7 +12,7 @@ jobs:
       - uses: actions/setup-python@v3
         with:
           python-version: 3.9
-      - run: python setup.py sdist
+      - run: python setup.py sdist bdist bdist_wheel
       - run: pip install twine
       - name: build terraform zip file
         run: |
@@ -53,4 +53,4 @@ jobs:
         env:
           username: ${{secrets.TWINE_USERNAME}}
           password: ${{secrets.TWINE_PASSWORD}}
-        run: twine upload -u $username -p $password  dist/*
+        run: twine upload --skip-existing -u $username -p $password  dist/*
