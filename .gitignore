@@ -58,3 +58,5 @@ venv
 tfplan.json
 build/
 dist/
+.vscode
+.tox
