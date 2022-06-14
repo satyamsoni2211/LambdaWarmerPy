@@ -22,7 +22,8 @@ resource "aws_cloudwatch_event_target" "lambda_warmer_target" {
   rule = aws_cloudwatch_event_rule.trigger_lambda.name
   input = <<-INPUT
   {
-    "warmer": true
+    "warmer": true,
+    "concurrency": 1
   }
   INPUT
 }

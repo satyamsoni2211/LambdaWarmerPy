@@ -6,6 +6,7 @@ This is a utility project designed to cater neccessities for warming up `Lambda`
 - [Installing Warmer](#installing-warmer)
 - [Using Warmer](#using-warmer)
 - [Setting up Event Bridge Notifications](#setting-up-event-bridge-notifications)
+- [Working on enhancements](#working-on-enhancements)
 
 #
 
@@ -33,29 +34,37 @@ This is very easy to incorporate in your existing Python Lambda Handlers. Follow
 
 ```python
 from warmer import warmer
-@warmer(flag="custom_event_key")
+@warmer(flag="custom_event_key", _concurrency=1)
 def handler(event, context):
     pass
 ```
 
-If you handler is a Flask/FastApi application, you may follow below steps:
+> Parameters:
+> *flag* (type: str)- name of the event flag to look for 
+> *_concurrency* (type: int)- (optional) Number of concurrent handlers to warm up, default: 1
+
+
+If your handler is a Flask/FastApi application, you may follow below steps:
 
 ```python
 from warmer import warmer
 from flask import Flask
 app = Flask()
-@warmer(flag="custom_event_key")
+@warmer(flag="custom_event_key",_concurrency=1)
 def application(event, context):
     return app(event, context)
 
 # or
 
-application = warmer(flag="custom_event_key")(app)
+application = warmer(flag="custom_event_key",_concurrency=1)(app)
 
 # you may now use application as your handler
 ```
 
 > `warmer` will help you cater the custom events that are coming for warming _Lambda_ function.
+> Though `_concurrency` is optional and by default it only warms up current execution. In case you want to warm up multiple instances of lambda handler, you may need to adjust `_concurrency` to *number of handlers running*.
+
+> `Warmer` uses threading mechnism to ensure that the warming calls are actually happening concurrently and not serially.
 
 <a name="setting-up-event-bridge-notifications"></a>
 
@@ -101,5 +110,42 @@ TransactionCompsAPI:
           Enabled: true
           Input: '{"warmer": true}' # this refers to the warmer flag
 ```
+
+In case you want to include concurrent executions, you may add below to include concurrent invocations.
+
+```yaml
+TransactionCompsAPI:
+  Type: "AWS::Serverless::Function"
+  Properties:
+    FunctionName: fake-function
+    Events:
+      WarmerSchedule: # add this event to the same template
+        Type: Schedule
+        Properties:
+          Schedule: cron(*/5 * ? * 2-6 *)
+          Name: fake-function-warmer-event
+          Description: Warmer Event for Lambda Function
+          Enabled: true
+          Input: '{"warmer": true, "concurrency": 5}' # this refers to the warmer flag and concurrency
+```
+
+<a name="working-on-enhancements"></a>
+## Working on enhancements
+
+If you want to work on enhancements or development, you may clone the project and run the below commands to setup environment:
+
+```bash
+python -m pip install pipenv
+pipenv shell
+
+# or
+
+python -m pip install virtualenv
+virtualenv venv
+source venv/bin/activate
+python -m pip install -r dev_requirements.txt
+```
+
+You may also raise a `PR` to get merged into existing project.
 
 Happy Warming.
