@@ -4,7 +4,7 @@ with open("README.md") as fr:
     long_description = fr.read()
 setup(
     name="py_lambda_warmer",
-    version="0.1.5",
+    version="0.1.6",
     description="Warmer Utility for Lambda Function",
     long_description=long_description,
     long_description_content_type='text/markdown',

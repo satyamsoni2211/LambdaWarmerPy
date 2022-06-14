@@ -57,8 +57,8 @@ def call_function_concurrently(concurrent_calls: int, flag: str):
         for f in as_completed(map_):
             try:
                 print(f.result())
-            except:
-                pass
+            except Exception as e:
+                print(f"got exception while executing function: {e}")
 
 
 def warmer(flag="warmer", _concurrency=1):

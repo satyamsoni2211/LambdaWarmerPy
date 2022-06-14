@@ -80,6 +80,8 @@ the repository.
 
 Simply download the `Terraform` code attached in the release and unzip it.
 
+> <span style="color:red;font-size:large">Note:</span> Make sure your function execution role has required permission to invoke your `Lambda` function else concurrent call executions might fail.
+
 ```bash
 wget https://github.com/satyamsoni2211/LambdaWarmerPy/releases/download/${release}/terraform_code.zip
 unzip terraform_code.zip -d terraform_code/
@@ -105,6 +107,9 @@ TransactionCompsAPI:
   Type: "AWS::Serverless::Function"
   Properties:
     FunctionName: fake-function
+    Policies:
+        - LambdaInvokePolicy:
+            FunctionName: "fake-function"
     Events:
       WarmerSchedule: # add this event to the same template
         Type: Schedule
@@ -118,11 +123,16 @@ TransactionCompsAPI:
 
 In case you want to include concurrent executions, you may add below to include concurrent invocations.
 
+> <span style="color:red;font-size:large">Note:</span> Using concurrency would also require you to add sufficient permissions to the role to call `lambda:invokeFunction` action on the `Lambda` function. Below code snippet includes policy to grant action to the role.
+
 ```yaml
 TransactionCompsAPI:
   Type: "AWS::Serverless::Function"
   Properties:
     FunctionName: fake-function
+    Policies:
+        - LambdaInvokePolicy:
+            FunctionName: "fake-function"
     Events:
       WarmerSchedule: # add this event to the same template
         Type: Schedule
