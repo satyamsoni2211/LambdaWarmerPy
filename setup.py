@@ -4,7 +4,7 @@ with open("README.md") as fr:
     long_description = fr.read()
 setup(
     name="py_lambda_warmer",
-    version="0.1.3",
+    version="0.1.4",
     description="Warmer Utility for Lambda Function",
     long_description=long_description,
     long_description_content_type='text/markdown',
@@ -20,5 +20,14 @@ setup(
         "Operating System :: OS Independent",
         "Programming Language :: Python :: 3.8",
         "Programming Language :: Python :: 3.9"
-    ]
+    ],
+    install_requires=[
+        'boto3',
+    ],
+    extras_require={
+        "dev": [
+            "pytest",
+            "tox"
+        ]
+    }
 )

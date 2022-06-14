@@ -5,6 +5,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+### [0.1.4] - 2022-06-14
+
+### Changed
+
+- Added support for concurrency
+- Added test cases for testing code
+- Enhanced documentation
+
 ### [0.1.3] - 2022-05-19
 
 ### Changed

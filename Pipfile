@@ -7,9 +7,12 @@ name = "pypi"
 pyyaml = "*"
 pydantic = "*"
 croniter = "*"
+boto3 = "*"
 
 [dev-packages]
 twine = "*"
+pytest = "*"
+tox = "*"
 
 [requires]
 python_version = "3.9"
