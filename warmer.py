@@ -57,7 +57,7 @@ def call_function_concurrently(concurrent_calls: int, flag: str):
         for f in as_completed(map_):
             try:
                 print(f.result())
-            except Exception as e:
+            except Exception as e:  # skipcq
                 print(f"got exception while executing function: {e}")
 
 
