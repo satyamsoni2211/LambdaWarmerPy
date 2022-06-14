@@ -26,6 +26,11 @@ python3 -m pip install py_lambda_warmer
 python3 -m pip install py_lambda_warmer==<release-version>
 ```
 
+> This does not specify `boto3` library as hard core requirements while installing as it expects 
+> lambda environment to already have it in order *to reduce the layer size* created. This would not be the case with development. You will have to explicitely  install dependencies using `dev_requirements.txt` file.
+> ( Changes made since release 0.1.5 )`
+
+
 <a name="using-warmer"></a>
 
 ## Using Warmer

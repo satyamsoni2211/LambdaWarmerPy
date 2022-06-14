@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+### [0.1.5] - 2022-06-14
+
+### Changed
+
+- Remove boto3 as requirement from setup file as lambda already happen to have it
+
 ### [0.1.4] - 2022-06-14
 
 ### Changed
